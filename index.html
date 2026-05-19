@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Parkeat — Plataforma Inteligente de Estacionamientos Integrados. Reserva, automatiza y monetiza espacios de estacionamiento en tiempo real." />
+  <meta name="keywords" content="estacionamiento, parking, Lima, Perú, tecnología, B2B, movilidad urbana" />
+  <title>Parkeat — Movilidad Inteligente</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              blue:      '#1E40AF',
+              'blue-dark': '#1E3A8A',
+              'blue-deep': '#0A1628',
+              red:       '#DC2626',
+              'red-dark':'#B91C1C',
+            }
+          },
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="font-sans bg-white text-gray-800 antialiased">
+
+  <!-- ═══════════════════════════════════════════ NAVBAR ═══ -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <nav class="flex items-center justify-between h-16 lg:h-20" aria-label="Navegación principal">
+
+        <!-- Logo -->
+        <a href="#inicio" class="flex items-center group" aria-label="Parkeat inicio">
+          <div class="bg-white rounded-xl px-3 py-1.5 shadow-sm transition-opacity duration-200 group-hover:opacity-90">
+            <img src="PARKEAT.jpg" alt="Parkeat — Car Parking" class="h-9 w-auto" />
+          </div>
+        </a>
+
+        <!-- Menu desktop -->
+        <ul class="hidden lg:flex items-center gap-8" role="list">
+          <li><a href="#b2c" class="nav-link text-sm font-medium">Soluciones B2C</a></li>
+          <li><a href="#b2b" class="nav-link text-sm font-medium">Soluciones B2B</a></li>
+          <li><a href="#smartcities" class="nav-link text-sm font-medium">Smart Cities</a></li>
+          <li><a href="#compliance" class="nav-link text-sm font-medium">Empresa</a></li>
+          <li><a href="#contacto" class="nav-link text-sm font-medium">Contacto</a></li>
+        </ul>
+
+        <!-- CTAs desktop -->
+        <div class="hidden lg:flex items-center gap-3">
+          <a href="#b2c" class="nav-cta-outline text-sm font-semibold px-4 py-2 rounded-full transition-all duration-200">
+            Descargar App
+          </a>
+          <a href="#b2b" class="nav-cta-filled text-sm font-semibold px-4 py-2 rounded-full transition-all duration-200">
+            Soy Empresa
+          </a>
+        </div>
+
+        <!-- Hamburger -->
+        <button id="menu-btn" class="lg:hidden nav-hamburger p-2 rounded-lg" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="ham-line"></span>
+          <span class="ham-line"></span>
+          <span class="ham-line"></span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="lg:hidden hidden mobile-menu-panel" role="navigation" aria-label="Menú móvil">
+      <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-3">
+        <a href="#b2c"        class="mobile-nav-link">Soluciones B2C</a>
+        <a href="#b2b"        class="mobile-nav-link">Soluciones B2B</a>
+        <a href="#smartcities" class="mobile-nav-link">Smart Cities</a>
+        <a href="#compliance"  class="mobile-nav-link">Empresa</a>
+        <a href="#contacto"    class="mobile-nav-link">Contacto</a>
+        <div class="border-t border-white/10 pt-3 flex flex-col gap-2 mt-1">
+          <a href="#b2c" class="btn-outline-mobile text-center font-semibold py-2.5 px-4 rounded-full">Descargar App</a>
+          <a href="#b2b" class="btn-red text-center font-semibold py-2.5 px-4 rounded-full text-white">Soy Empresa</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="inicio">
+
+    <!-- ═══════════════════════════════════════════ HERO ═══ -->
+    <section class="hero-section relative overflow-hidden min-h-screen flex items-center" aria-labelledby="hero-headline">
+
+      <!-- Video background -->
+      <video class="hero-video-bg" autoplay loop muted playsinline preload="none" aria-hidden="true">
+        <source src="assets/video/hero-bg-loop.mp4" type="video/mp4">
+      </video>
+
+      <!-- City grid background -->
+      <div class="city-grid" aria-hidden="true">
+        <div class="grid-lines"></div>
+        <div class="spot-container" id="spots"></div>
+        <div class="scan-line"></div>
+      </div>
+
+      <!-- Gradient overlay -->
+      <div class="hero-gradient" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-28 pb-20 w-full">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+          <!-- Left: Copy -->
+          <div class="hero-copy">
+            <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 mb-8" data-reveal>
+              <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+              <span class="text-white/80 text-xs font-medium tracking-widest uppercase">Plataforma activa en Lima & Chiclayo</span>
+            </div>
+
+            <h1 id="hero-headline" class="hero-headline text-white" data-reveal>
+              Movilidad<br/>
+              <span class="hero-headline-accent">inteligente</span><br/>
+              para el Perú.
+            </h1>
+
+            <p class="text-white/60 text-lg leading-relaxed mt-6 max-w-lg" data-reveal>
+              Reserva, automatiza y monetiza espacios de estacionamiento con tecnología de punta. La plataforma que conecta conductores, empresas y ciudades.
+            </p>
+
+            <div class="flex flex-wrap gap-3 mt-10" data-reveal>
+              <a href="#b2c" class="hero-btn-primary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                Reserva tu Espacio
+              </a>
+              <a href="#b2b" class="hero-btn-secondary">
+                Afilia tu Edificio
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+
+            <!-- Stats row -->
+            <div class="flex flex-wrap gap-8 mt-14" data-reveal>
+              <div class="stat-pill">
+                <span class="stat-number" data-count="500">0</span>
+                <span class="stat-label">Espacios</span>
+              </div>
+              <div class="stat-divider" aria-hidden="true"></div>
+              <div class="stat-pill">
+                <span class="stat-number" data-count="10000">0</span>
+                <span class="stat-label">Usuarios</span>
+              </div>
+              <div class="stat-divider" aria-hidden="true"></div>
+              <div class="stat-pill">
+                <span class="stat-always">24/7</span>
+                <span class="stat-label">Disponible</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Dashboard card -->
+          <div class="hero-visual" data-reveal>
+            <div class="dashboard-card">
+              <div class="dash-header">
+                <div class="dash-title">
+                  <div class="dash-dot green"></div>
+                  <span>Panel de Control · Lima Centro</span>
+                </div>
+                <div class="dash-badge">EN VIVO</div>
+              </div>
+
+              <div class="dash-stats-row">
+                <div class="dash-stat">
+                  <div class="dash-stat-val">84%</div>
+                  <div class="dash-stat-lbl">Ocupación</div>
+                </div>
+                <div class="dash-stat">
+                  <div class="dash-stat-val text-green-400">+S/.340</div>
+                  <div class="dash-stat-lbl">Ingresos hoy</div>
+                </div>
+                <div class="dash-stat">
+                  <div class="dash-stat-val text-yellow-400">3</div>
+                  <div class="dash-stat-lbl">Alertas</div>
+                </div>
+              </div>
+
+              <!-- Parking grid visual -->
+              <div class="parking-visual" aria-label="Visualización de espacios de estacionamiento">
+                <div class="parking-row" id="park-row-1"></div>
+                <div class="parking-row" id="park-row-2"></div>
+                <div class="parking-row" id="park-row-3"></div>
+                <div class="parking-aisle" aria-hidden="true"></div>
+                <div class="parking-row" id="park-row-4"></div>
+                <div class="parking-row" id="park-row-5"></div>
+              </div>
+
+              <div class="dash-legend">
+                <span class="legend-item"><span class="legend-dot occupied"></span>Ocupado</span>
+                <span class="legend-item"><span class="legend-dot free"></span>Libre</span>
+                <span class="legend-item"><span class="legend-dot reserved"></span>Reservado</span>
+              </div>
+
+              <!-- Mini chart -->
+              <div class="mini-chart" aria-label="Tendencia de ocupación">
+                <div class="chart-label">Ocupación últimas 6h</div>
+                <div class="chart-bars">
+                  <div class="chart-bar" style="--h:45%"></div>
+                  <div class="chart-bar" style="--h:60%"></div>
+                  <div class="chart-bar" style="--h:78%"></div>
+                  <div class="chart-bar" style="--h:55%"></div>
+                  <div class="chart-bar" style="--h:90%"></div>
+                  <div class="chart-bar active" style="--h:84%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="scroll-indicator" aria-hidden="true">
+        <div class="scroll-dot"></div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ DIFERENCIACIÓN ═══ -->
+    <section class="py-24 bg-white" aria-labelledby="diff-title">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-16" data-reveal>
+          <div>
+            <p class="text-brand-red text-sm font-semibold tracking-widest uppercase mb-3">Ventaja Competitiva</p>
+            <h2 id="diff-title" class="section-headline">¿Por qué Parkeat<br/>es diferente?</h2>
+          </div>
+          <p class="text-gray-500 max-w-xs text-sm leading-relaxed lg:text-right">
+            Mientras la competencia digitaliza el ticket físico, nosotros construimos el ecosistema completo.
+          </p>
+        </div>
+
+        <!-- Bento grid -->
+        <div class="bento-grid" role="list">
+
+          <!-- Big card: Reserva predictiva -->
+          <article class="bento-card bento-tall bento-has-img text-white" data-reveal role="listitem">
+            <img src="assets/img/reserva-predictiva.jpg" class="bento-bg-img" alt="" aria-hidden="true" loading="lazy">
+            <div class="bento-img-overlay bento-overlay-blue" aria-hidden="true"></div>
+            <div class="bento-icon-bg">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.5" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+                <circle cx="12" cy="15" r="2" fill="#60A5FA"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mt-auto">Reserva Predictiva<br/>en Tiempo Real</h3>
+            <p class="text-white/70 text-sm mt-2 leading-relaxed">Geolocalización GPS activa, disponibilidad al segundo, reserva con un clic. Sin esperas, sin sorpresas.</p>
+            <div class="bento-tag mt-4">IA + GPS</div>
+          </article>
+
+          <!-- Medium card: B2B -->
+          <article class="bento-card bg-gray-50 border border-gray-100" data-reveal role="listitem">
+            <div class="bento-icon-bg-light">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1E40AF" stroke-width="1.5" aria-hidden="true">
+                <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+                <line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mt-3">Software B2B Empresarial</h3>
+            <p class="text-gray-500 text-sm mt-2 leading-relaxed">Dashboard corporativo, accesos por roles, monetización de espacios inactivos.</p>
+            <div class="bento-tag-dark mt-4">Empresas</div>
+          </article>
+
+          <!-- Medium card: Analítica -->
+          <article class="bento-card bg-brand-red text-white" data-reveal role="listitem">
+            <div class="bento-icon-bg">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" aria-hidden="true">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold mt-3">Analítica &amp; Tarifas Dinámicas</h3>
+            <p class="text-white/70 text-sm mt-2 leading-relaxed">Precios que responden a la demanda real. Maximiza ingresos sin esfuerzo manual.</p>
+            <div class="bento-tag mt-4" style="background:rgba(255,255,255,0.15)">IA Pricing</div>
+          </article>
+
+          <!-- Wide card: Comparativa vs Apparka -->
+          <article class="bento-card bento-wide bg-white border border-gray-100 shadow-sm" data-reveal role="listitem">
+            <h3 class="font-bold text-gray-900 text-lg mb-6">Parkeat vs. competencia</h3>
+            <div class="compare-table" role="table" aria-label="Comparativa de características">
+              <div class="compare-row compare-header" role="row">
+                <span role="columnheader">Característica</span>
+                <span class="text-brand-blue font-bold" role="columnheader">Parkeat</span>
+                <span class="text-gray-400" role="columnheader">Tradicional</span>
+              </div>
+              <div class="compare-row" role="row">
+                <span role="cell">Reserva anticipada</span>
+                <span class="check-yes" role="cell" aria-label="Sí">✓</span>
+                <span class="check-no" role="cell" aria-label="No">✗</span>
+              </div>
+              <div class="compare-row" role="row">
+                <span role="cell">Dashboard B2B</span>
+                <span class="check-yes" role="cell" aria-label="Sí">✓</span>
+                <span class="check-no" role="cell" aria-label="No">✗</span>
+              </div>
+              <div class="compare-row" role="row">
+                <span role="cell">Tarifas dinámicas</span>
+                <span class="check-yes" role="cell" aria-label="Sí">✓</span>
+                <span class="check-no" role="cell" aria-label="No">✗</span>
+              </div>
+              <div class="compare-row" role="row">
+                <span role="cell">Ingreso LPR</span>
+                <span class="check-yes" role="cell" aria-label="Sí">✓</span>
+                <span class="check-no" role="cell" aria-label="No">✗</span>
+              </div>
+              <div class="compare-row" role="row">
+                <span role="cell">Monetización espacios</span>
+                <span class="check-yes" role="cell" aria-label="Sí">✓</span>
+                <span class="check-no" role="cell" aria-label="No">✗</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Small card: LPR -->
+          <article class="bento-card bento-has-img text-white" data-reveal role="listitem">
+            <img src="assets/img/ingreso-lpr.jpg" class="bento-bg-img" alt="" aria-hidden="true" loading="lazy">
+            <div class="bento-img-overlay bento-overlay-dark" aria-hidden="true"></div>
+            <div class="bento-icon-bg">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="1.5" aria-hidden="true">
+                <rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
+              </svg>
+            </div>
+            <h3 class="text-base font-bold mt-3">Ingreso LPR<br/>Sin Contacto</h3>
+            <p class="text-white/70 text-xs mt-1">Reconocimiento de placas automático</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ B2C ═══ -->
+    <section id="b2c" class="py-24 bg-gray-50" aria-labelledby="b2c-title">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+          <!-- Phone mockup -->
+          <div class="phone-mockup-wrap order-2 lg:order-1" data-reveal aria-hidden="true">
+            <div class="phone-mockup">
+              <div class="phone-screen">
+                <div class="app-header">
+                  <div class="app-logo-sm">P</div>
+                  <span>Parkeat</span>
+                  <div class="app-notif">3</div>
+                </div>
+                <div class="app-map">
+                  <div class="map-grid"></div>
+                  <div class="map-pin active pulse-pin" style="top:40%;left:55%"></div>
+                  <div class="map-pin" style="top:60%;left:30%"></div>
+                  <div class="map-pin free" style="top:25%;left:70%"></div>
+                </div>
+                <div class="app-card">
+                  <div class="app-card-row">
+                    <span class="text-xs text-gray-400">Espacio seleccionado</span>
+                    <span class="text-xs text-green-500 font-semibold">Disponible</span>
+                  </div>
+                  <div class="app-card-main">Miraflores Plaza · A-14</div>
+                  <div class="app-card-row mt-1">
+                    <span class="text-xs text-gray-500">S/. 4.50 / hr</span>
+                    <span class="text-xs text-blue-600">0.3 km</span>
+                  </div>
+                  <div class="app-reserve-btn">Reservar Ahora</div>
+                </div>
+              </div>
+            </div>
+            <!-- Floating chips -->
+            <div class="float-chip chip-1" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1E40AF" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.32A2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.84a16 16 0 0 0 6.36 6.36l.95-.94a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              Yape &amp; Plin aceptados
+            </div>
+            <div class="float-chip chip-2" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              SSL Seguro
+            </div>
+            <!-- Real-world conductor photo -->
+            <div class="conductor-photo" aria-hidden="true">
+              <img src="assets/img/conductor-b2c.jpg" alt="Conductor usando la app Parkeat" loading="lazy">
+            </div>
+          </div>
+
+          <!-- Copy -->
+          <div class="order-1 lg:order-2" data-reveal>
+            <p class="text-brand-red text-sm font-semibold tracking-widest uppercase mb-3">Para Conductores</p>
+            <h2 id="b2c-title" class="section-headline">Tu estacionamiento,<br/>a un toque.</h2>
+            <p class="text-gray-500 mt-4 leading-relaxed">Olvida dar vueltas buscando dónde cuadrar. Parkeat predice disponibilidad, reserva tu espacio y te permite ingresar solo con tu placa.</p>
+
+            <!-- Tabs -->
+            <div class="feature-tabs mt-8" role="tablist" aria-label="Tipos de usuario">
+              <button class="feat-tab active" role="tab" aria-selected="true" aria-controls="tab-conductores" id="tab-btn-1" data-tab="conductores">Conductores</button>
+              <button class="feat-tab" role="tab" aria-selected="false" aria-controls="tab-frecuentes" id="tab-btn-2" data-tab="frecuentes">Usuarios Frecuentes</button>
+            </div>
+
+            <div id="tab-conductores" class="tab-panel mt-6" role="tabpanel" aria-labelledby="tab-btn-1">
+              <ul class="space-y-3" role="list">
+                <li class="feature-item" role="listitem">
+                  <span class="feat-icon" aria-hidden="true">📍</span>
+                  <div><span class="font-semibold text-gray-800">Geolocalización predictiva</span><p class="text-gray-400 text-sm">Ve espacios libres en tiempo real en un radio de 5 km.</p></div>
+                </li>
+                <li class="feature-item" role="listitem">
+                  <span class="feat-icon" aria-hidden="true">⚡</span>
+                  <div><span class="font-semibold text-gray-800">Reserva 1-click</span><p class="text-gray-400 text-sm">Sin formularios, sin esperas. Tu espacio en segundos.</p></div>
+                </li>
+                <li class="feature-item" role="listitem">
+                  <span class="feat-icon" aria-hidden="true">🚘</span>
+                  <div><span class="font-semibold text-gray-800">Ingreso LPR automático</span><p class="text-gray-400 text-sm">La barrera se abre al reconocer tu placa. Sin ticket.</p></div>
+                </li>
+                <li class="feature-item" role="listitem">
+                  <span class="feat-icon" aria-hidden="true">🚪</span>
+                  <div><span class="font-semibold text-gray-800">Salida sin colas</span><p class="text-gray-400 text-sm">Pago automático, salida inmediata. Cero fricciones.</p></div>
+                </li>
+              </ul>
+            </div>
+
+            <div id="tab-frecuentes" class="tab-panel mt-6 hidden" role="tabpanel" aria-labelledby="tab-btn-2">
+              <ul class="space-y-3" role="list">
+                <li class="feature-item" role="listitem">
+                  <span class="feat-icon" aria-hidden="true">📅</span>
+                  <div><span class="font-semibold text-gray-800">Suscripciones mensuales</span><p class="text-gray-400 text-sm">Para trabajadores, estudiantes y usuarios habituales.</p></div>
+                </li>
+                <li class="feature-item" role="listitem">
+                  <span class="feat-icon" aria-hidden="true">💳</span>
+                  <div><span class="font-semibold text-gray-800">Billeteras digitales</span><p class="text-gray-400 text-sm">Yape, Plin, tarjetas de crédito/débito, recarga automática.</p></div>
+                </li>
+                <li class="feature-item" role="listitem">
+                  <span class="feat-icon" aria-hidden="true">🎯</span>
+                  <div><span class="font-semibold text-gray-800">Espacio fijo garantizado</span><p class="text-gray-400 text-sm">Tu espacio reservado cada día. Sin competencia.</p></div>
+                </li>
+                <li class="feature-item" role="listitem">
+                  <span class="feat-icon" aria-hidden="true">📊</span>
+                  <div><span class="font-semibold text-gray-800">Historial y facturación</span><p class="text-gray-400 text-sm">Descarga boletas y controla tu gasto mensual.</p></div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ B2B ═══ -->
+    <section id="b2b" class="py-24 bg-brand-blue-deep relative overflow-hidden" aria-labelledby="b2b-title">
+      <div class="b2b-pattern" aria-hidden="true"></div>
+      <img src="assets/img/estacionamiento-b2b.jpg" class="b2b-section-img" alt="" aria-hidden="true" loading="lazy">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+          <!-- Copy -->
+          <div data-reveal>
+            <p class="text-blue-400 text-sm font-semibold tracking-widest uppercase mb-3">Para Empresas</p>
+            <h2 id="b2b-title" class="section-headline text-white">Potencia la<br/>rentabilidad de<br/>tu infraestructura.</h2>
+            <p class="text-white/50 mt-4 leading-relaxed">Convierte tus espacios de estacionamiento en un activo productivo. Control total, visibilidad en tiempo real y nuevos ingresos pasivos.</p>
+
+            <ul class="space-y-4 mt-8" role="list">
+              <li class="b2b-feature" role="listitem">
+                <div class="b2b-feat-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                </div>
+                <div>
+                  <div class="font-semibold text-white">Corporate Parking Management</div>
+                  <div class="text-white/40 text-sm">Gestión de accesos por roles: gerentes, colaboradores y visitas.</div>
+                </div>
+              </li>
+              <li class="b2b-feature" role="listitem">
+                <div class="b2b-feat-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+                <div>
+                  <div class="font-semibold text-white">Monetización de Espacios Muertos</div>
+                  <div class="text-white/40 text-sm">Alquila espacios inactivos a la red Parkeat. Ingresos pasivos automáticos.</div>
+                </div>
+              </li>
+              <li class="b2b-feature" role="listitem">
+                <div class="b2b-feat-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                </div>
+                <div>
+                  <div class="font-semibold text-white">Reportes &amp; Analytics en Tiempo Real</div>
+                  <div class="text-white/40 text-sm">Ocupación, ingresos, tendencias y tarifas dinámicas en un solo panel.</div>
+                </div>
+              </li>
+              <li class="b2b-feature" role="listitem">
+                <div class="b2b-feat-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                </div>
+                <div>
+                  <div class="font-semibold text-white">Dashboard Administrativo</div>
+                  <div class="text-white/40 text-sm">Interfaz web y app para gestionar desde cualquier dispositivo.</div>
+                </div>
+              </li>
+            </ul>
+
+            <a href="#contacto" class="btn-red mt-10 inline-flex items-center gap-2 font-semibold text-white px-6 py-3 rounded-xl">
+              Solicitar Demo Empresarial
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+
+          <!-- B2B Dashboard mockup -->
+          <div data-reveal aria-label="Mockup del panel administrativo">
+            <div class="b2b-dashboard">
+              <div class="b2b-dash-top">
+                <div class="b2b-dash-title">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                  Panel Empresarial
+                </div>
+                <div class="b2b-dash-period">Mayo 2026</div>
+              </div>
+
+              <div class="b2b-metrics">
+                <div class="b2b-metric">
+                  <div class="b2b-metric-val">S/. 8,420</div>
+                  <div class="b2b-metric-lbl">Ingresos mes</div>
+                  <div class="b2b-metric-delta up">+23%</div>
+                </div>
+                <div class="b2b-metric">
+                  <div class="b2b-metric-val">156</div>
+                  <div class="b2b-metric-lbl">Espacios activos</div>
+                  <div class="b2b-metric-delta up">+12</div>
+                </div>
+                <div class="b2b-metric">
+                  <div class="b2b-metric-val">91%</div>
+                  <div class="b2b-metric-lbl">Satisfacción</div>
+                  <div class="b2b-metric-delta up">↑</div>
+                </div>
+              </div>
+
+              <!-- Occupancy chart -->
+              <div class="b2b-chart-area">
+                <div class="b2b-chart-label">Ocupación semanal</div>
+                <div class="b2b-chart-line" aria-hidden="true">
+                  <svg viewBox="0 0 200 60" fill="none" preserveAspectRatio="none">
+                    <defs>
+                      <linearGradient id="lineGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#60A5FA" stop-opacity="0.4"/>
+                        <stop offset="100%" stop-color="#60A5FA" stop-opacity="0"/>
+                      </linearGradient>
+                    </defs>
+                    <path d="M0 45 C20 40 40 20 60 25 C80 30 100 15 120 10 C140 5 160 20 180 15 L200 18 L200 60 L0 60Z" fill="url(#lineGrad)"/>
+                    <path d="M0 45 C20 40 40 20 60 25 C80 30 100 15 120 10 C140 5 160 20 180 15 L200 18" stroke="#60A5FA" stroke-width="2" fill="none"/>
+                  </svg>
+                </div>
+                <div class="b2b-chart-days">
+                  <span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span>
+                </div>
+              </div>
+
+              <!-- Access table -->
+              <div class="b2b-table">
+                <div class="b2b-table-header">Últimos accesos</div>
+                <div class="b2b-table-row">
+                  <span class="access-plate">ABC-123</span>
+                  <span class="access-type employee">Colaborador</span>
+                  <span class="access-time">08:14</span>
+                </div>
+                <div class="b2b-table-row">
+                  <span class="access-plate">XYZ-789</span>
+                  <span class="access-type visitor">Visita</span>
+                  <span class="access-time">08:31</span>
+                </div>
+                <div class="b2b-table-row">
+                  <span class="access-plate">LMN-456</span>
+                  <span class="access-type manager">Gerencia</span>
+                  <span class="access-time">09:02</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ SMART CITIES ═══ -->
+    <section id="smartcities" class="py-24 bg-white" aria-labelledby="iot-title">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+        <div class="text-center mb-16" data-reveal>
+          <div class="inline-flex items-center gap-2 bg-blue-50 text-brand-blue rounded-full px-4 py-1.5 text-xs font-semibold tracking-widest uppercase mb-4">
+            Infraestructura IoT
+          </div>
+          <h2 id="iot-title" class="section-headline">Hardware de<br/>última generación.</h2>
+          <p class="text-gray-400 mt-4 max-w-lg mx-auto">Integramos tecnología física con nuestra plataforma digital para crear una experiencia de estacionamiento completamente automatizada.</p>
+        </div>
+
+        <div class="iot-grid" role="list">
+          <article class="iot-card" data-reveal role="listitem">
+            <div class="iot-img-wrap">
+              <img src="assets/img/barreras-automaticas.jpg" alt="Barrera automática inteligente con sensor IoT" loading="lazy">
+            </div>
+            <h3 class="iot-title">Barreras Automáticas</h3>
+            <p class="iot-desc">Apertura y cierre inteligente sincronizado con reservas activas. Latencia &lt;0.5s.</p>
+            <div class="iot-badge">Hardware</div>
+          </article>
+
+          <article class="iot-card" data-reveal role="listitem">
+            <div class="iot-img-wrap">
+              <img src="assets/img/sensor-ultrasonico.jpg" alt="Sensor ultrasónico instalado en espacio de estacionamiento" loading="lazy">
+            </div>
+            <h3 class="iot-title">Sensores Ultrasónicos</h3>
+            <p class="iot-desc">Detección de presencia en cada espacio. Actualización en tiempo real en la plataforma.</p>
+            <div class="iot-badge">IoT</div>
+          </article>
+
+          <article class="iot-card" data-reveal role="listitem">
+            <div class="iot-img-wrap">
+              <img src="assets/img/camara-lpr.jpg" alt="Cámara LPR de reconocimiento de placas" loading="lazy">
+            </div>
+            <h3 class="iot-title">Cámaras LPR</h3>
+            <p class="iot-desc">Reconocimiento de placas con IA. Precisión &gt;99%. Funciona de día y de noche.</p>
+            <div class="iot-badge">IA Vision</div>
+          </article>
+
+          <article class="iot-card" data-reveal role="listitem">
+            <div class="iot-img-wrap">
+              <img src="assets/img/totem-digital.jpg" alt="Tótem digital de autogestión en estacionamiento" loading="lazy">
+            </div>
+            <h3 class="iot-title">Tótems Digitales</h3>
+            <p class="iot-desc">Puntos de autogestión táctiles. Pago, info y asistencia directamente en el predio.</p>
+            <div class="iot-badge">Kiosk</div>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ CONVERSIÓN ═══ -->
+    <section class="conversion-section py-24 relative overflow-hidden" aria-labelledby="cta-title">
+      <div class="conv-bg" aria-hidden="true"></div>
+      <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+
+        <!-- Brand header -->
+        <div class="conv-header" data-reveal>
+          <div class="conv-header-logo">
+            <img src="PARKEAT.jpg" alt="Parkeat Car Parking" />
+          </div>
+          <p class="conv-header-tagline">Elige cómo quieres usar Parkeat</p>
+          <div class="conv-header-stats">
+            <span><strong>500+</strong> Espacios</span>
+            <div class="conv-stat-sep" aria-hidden="true"></div>
+            <span><strong>10K+</strong> Usuarios</span>
+            <div class="conv-stat-sep" aria-hidden="true"></div>
+            <span><strong>2</strong> Ciudades</span>
+            <div class="conv-stat-sep" aria-hidden="true"></div>
+            <span><strong>24/7</strong> Disponible</span>
+          </div>
+        </div>
+
+        <h2 id="cta-title" class="sr-only">Empieza con Parkeat</h2>
+        <div class="conv-grid">
+
+          <!-- B2B card — video limpio -->
+          <article class="conv-card conv-b2b" data-reveal aria-labelledby="cta-b2b">
+            <video class="conv-b2b-video" autoplay loop muted playsinline preload="none" aria-hidden="true">
+              <source src="assets/video/barrera-lpr.mp4" type="video/mp4">
+            </video>
+          </article>
+
+          <!-- B2C card -->
+          <article class="conv-card conv-b2c" data-reveal aria-labelledby="cta-b2c" style="position:relative;">
+            <!-- Logo badge -->
+            <div class="conv-card-logo conv-card-logo-light" aria-hidden="true">
+              <img src="PARKEAT.jpg" alt="Parkeat">
+            </div>
+
+            <div class="conv-icon b2c-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1E40AF" stroke-width="1.5">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+            <h3 id="cta-b2c" class="conv-title text-gray-900">¿Cansado de buscar<br/>dónde estacionar?</h3>
+            <p class="conv-desc text-gray-500">Descarga Parkeat y reserva tu espacio antes de salir de casa. Disponible en iOS y Android.</p>
+            <div class="store-btns">
+              <a href="#" class="store-btn" aria-label="Descargar en App Store">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                App Store
+              </a>
+              <a href="#" class="store-btn" aria-label="Descargar en Google Play">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.18 23.76c.26.14.55.19.83.16l12.35-12.35L13.5 8.7 3.18 23.76zm17.11-10.57L17.44 11.5l-3.24 3.24 3.24 3.24 2.85-1.69c.81-.49.81-1.62 0-2.1zm-17.11-9.95L13.5 14.59l2.86-2.86L3.01 2.08C2.84 1.91 2.63 1.8 2.4 1.8c-.19 0-.38.06-.55.17-.34.22-.55.6-.55 1.01v19.04c0 .41.21.79.55 1.01l.3.18-.3-19.98z"/></svg>
+                Google Play
+              </a>
+            </div>
+
+            <!-- Feature chips -->
+            <div class="conv-chips" aria-label="Características de la app">
+              <span class="conv-chip conv-chip-blue">GPS en vivo</span>
+              <span class="conv-chip conv-chip-blue">Yape &amp; Plin</span>
+              <span class="conv-chip conv-chip-blue">Ingreso LPR</span>
+              <span class="conv-chip conv-chip-blue">Reserva 1-click</span>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Bottom trust strip with logo -->
+        <div class="conv-trust-strip" data-reveal>
+          <div class="conv-trust-logo">
+            <img src="PARKEAT.jpg" alt="Parkeat Car Parking">
+          </div>
+          <div class="conv-trust-sep" aria-hidden="true"></div>
+          <p class="conv-trust-text">La plataforma de estacionamiento inteligente líder en el Perú</p>
+          <div class="conv-trust-sep" aria-hidden="true"></div>
+          <div class="conv-trust-badges">
+            <div class="conv-trust-badge">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              PCI-DSS
+            </div>
+            <div class="conv-trust-badge">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1E40AF" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Lima &amp; Chiclayo
+            </div>
+            <div class="conv-trust-badge">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              99.9% uptime
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ COMPLIANCE ═══ -->
+    <section id="compliance" class="py-24 bg-gray-50" aria-labelledby="compliance-title">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+        <div class="text-center mb-14" data-reveal>
+          <p class="text-brand-red text-sm font-semibold tracking-widest uppercase mb-3">Regulación &amp; Seguridad</p>
+          <h2 id="compliance-title" class="section-headline">Cumplimiento normativo<br/>garantizado.</h2>
+        </div>
+
+        <div class="compliance-grid" role="list">
+          <article class="comp-card" data-reveal role="listitem">
+            <div class="comp-badge" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E40AF" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3 class="comp-title">Código Civil Peruano</h3>
+            <p class="comp-desc">Responsabilidad civil en custodia de vehículos. Cobertura de seguros integrada y transparente.</p>
+          </article>
+
+          <article class="comp-card" data-reveal role="listitem">
+            <div class="comp-badge" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E40AF" stroke-width="1.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            </div>
+            <h3 class="comp-title">PCI-DSS Certificado</h3>
+            <p class="comp-desc">Procesamiento seguro de pagos con tarjetas. Cifrado SSL de extremo a extremo en todas las transacciones.</p>
+          </article>
+
+          <article class="comp-card" data-reveal role="listitem">
+            <div class="comp-badge" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E40AF" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
+            <h3 class="comp-title">Libro de Reclamaciones</h3>
+            <p class="comp-desc">Cumplimiento INDECOPI. Acceso directo y permanente en la plataforma para protección al consumidor.</p>
+          </article>
+
+          <article class="comp-card" data-reveal role="listitem">
+            <div class="comp-badge" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E40AF" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <h3 class="comp-title">Ley N° 29733 — LPDP</h3>
+            <p class="comp-desc">Protección de datos personales, geolocalización y registros vehiculares. Sin almacenamiento de datos sensibles de pago.</p>
+          </article>
+        </div>
+
+        <!-- SSL badge row -->
+        <div class="ssl-row" data-reveal aria-label="Certificaciones de seguridad">
+          <div class="ssl-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>SSL 256-bit</span>
+          </div>
+          <div class="ssl-sep" aria-hidden="true"></div>
+          <div class="ssl-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span>Encriptación End-to-End</span>
+          </div>
+          <div class="ssl-sep" aria-hidden="true"></div>
+          <div class="ssl-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>PCI-DSS Compliant</span>
+          </div>
+          <div class="ssl-sep" aria-hidden="true"></div>
+          <div class="ssl-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Disponibilidad 99.9%</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ CONTACTO ═══ -->
+    <section id="contacto" class="py-24 bg-white" aria-labelledby="contact-title">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-16">
+
+          <div data-reveal>
+            <p class="text-brand-red text-sm font-semibold tracking-widest uppercase mb-3">Hablemos</p>
+            <h2 id="contact-title" class="section-headline">¿Listo para<br/>transformar tu<br/>estacionamiento?</h2>
+            <p class="text-gray-400 mt-4 leading-relaxed">Nuestro equipo técnico responde en menos de 24 horas. Sin compromiso, sin letra pequeña.</p>
+
+            <div class="contact-info mt-10 space-y-4">
+              <div class="contact-row">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E40AF" stroke-width="1.5" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <a href="mailto:info@ssomasafe.com" class="text-gray-600 hover:text-brand-blue transition-colors">info@ssomasafe.com</a>
+              </div>
+              <div class="contact-row">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E40AF" stroke-width="1.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <div class="text-gray-600">
+                  <div>Lima: Av. República de Chile 324</div>
+                  <div>Chiclayo: Lapoint 1221</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Form -->
+          <div data-reveal>
+            <form id="contact-form" class="contact-form" novalidate aria-label="Formulario de contacto">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name" class="form-label">Nombre completo</label>
+                  <input type="text" id="name" name="name" class="form-input" placeholder="Juan Pérez" required autocomplete="name" aria-required="true" />
+                  <span class="form-error" id="name-error" role="alert" aria-live="polite"></span>
+                </div>
+                <div class="form-group">
+                  <label for="company" class="form-label">Empresa (opcional)</label>
+                  <input type="text" id="company" name="company" class="form-input" placeholder="Mi Empresa S.A.C." autocomplete="organization" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email" class="form-label">Correo electrónico</label>
+                <input type="email" id="email" name="email" class="form-input" placeholder="juan@empresa.com" required autocomplete="email" aria-required="true" />
+                <span class="form-error" id="email-error" role="alert" aria-live="polite"></span>
+              </div>
+              <div class="form-group">
+                <label for="type" class="form-label">¿Cómo podemos ayudarte?</label>
+                <select id="type" name="type" class="form-input form-select" required aria-required="true">
+                  <option value="">Selecciona una opción</option>
+                  <option value="b2b">Afiliar mi estacionamiento (B2B)</option>
+                  <option value="demo">Solicitar demo empresarial</option>
+                  <option value="b2c">Información para conductores (B2C)</option>
+                  <option value="iot">Integración IoT / Hardware</option>
+                  <option value="otro">Otro</option>
+                </select>
+                <span class="form-error" id="type-error" role="alert" aria-live="polite"></span>
+              </div>
+              <div class="form-group">
+                <label for="message" class="form-label">Mensaje</label>
+                <textarea id="message" name="message" class="form-input form-textarea" placeholder="Cuéntanos sobre tu proyecto..." required rows="4" aria-required="true"></textarea>
+                <span class="form-error" id="message-error" role="alert" aria-live="polite"></span>
+              </div>
+              <button type="submit" class="form-submit" id="submit-btn">
+                <span id="submit-text">Enviar Mensaje</span>
+                <svg id="submit-spinner" class="hidden animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10" opacity="0.25"/><path d="M12 2a10 10 0 0 1 10 10" opacity="1"/></svg>
+              </button>
+              <div id="form-success" class="form-success hidden" role="status" aria-live="polite">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                Mensaje enviado. Te contactamos en menos de 24 horas.
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════ FOOTER ═══ -->
+  <footer class="bg-brand-blue-deep text-white pt-16 pb-8" role="contentinfo">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="footer-grid">
+
+        <!-- Brand -->
+        <div class="footer-brand">
+          <div class="mb-5">
+            <div class="inline-block bg-white rounded-xl px-3 py-1.5">
+              <img src="PARKEAT.jpg" alt="Parkeat — Car Parking" class="h-9 w-auto" />
+            </div>
+          </div>
+          <p class="text-white/40 text-sm leading-relaxed max-w-xs">Soluciones Tecnológicas de Movilidad, Automatización e Integración Inteligente de Estacionamientos.</p>
+          <div class="flex gap-3 mt-6">
+            <a href="#" class="social-link" aria-label="LinkedIn de Parkeat">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Instagram de Parkeat">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Facebook de Parkeat">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Soluciones -->
+        <nav aria-label="Soluciones">
+          <div class="footer-col-title">Soluciones</div>
+          <ul class="footer-links" role="list">
+            <li><a href="#b2c">Reserva para Conductores</a></li>
+            <li><a href="#b2c">Suscripciones Mensuales</a></li>
+            <li><a href="#b2b">Corporate Parking</a></li>
+            <li><a href="#b2b">Monetización de Espacios</a></li>
+            <li><a href="#smartcities">Smart Cities &amp; IoT</a></li>
+          </ul>
+        </nav>
+
+        <!-- Empresa -->
+        <nav aria-label="Empresa">
+          <div class="footer-col-title">Empresa</div>
+          <ul class="footer-links" role="list">
+            <li><a href="#compliance">Nosotros</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="#contacto">Prensa</a></li>
+            <li><a href="#" aria-label="Libro de Reclamaciones INDECOPI">Libro de Reclamaciones</a></li>
+            <li><a href="#">Política de Privacidad</a></li>
+          </ul>
+        </nav>
+
+        <!-- Contacto -->
+        <address class="not-italic">
+          <div class="footer-col-title">Contacto</div>
+          <ul class="footer-links" role="list">
+            <li>
+              <a href="mailto:info@ssomasafe.com" class="flex items-center gap-2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                info@ssomasafe.com
+              </a>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mt-1 shrink-0" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Lima: Av. República de Chile 324</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mt-1 shrink-0" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Chiclayo: Lapoint 1221</span>
+            </li>
+          </ul>
+        </address>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p class="text-white/30 text-sm">© 2026 PARKEAT — Todos los derechos reservados.</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-white/30 text-sm hover:text-white/60 transition-colors">Términos de Uso</a>
+          <a href="#" class="text-white/30 text-sm hover:text-white/60 transition-colors">Privacidad</a>
+          <a href="#" class="text-white/30 text-sm hover:text-white/60 transition-colors" aria-label="Libro de Reclamaciones">Reclamaciones</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
