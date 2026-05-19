@@ -1,18 +1,199 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" prefix="og: https://ogp.me/ns#">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Parkeat — Plataforma Inteligente de Estacionamientos Integrados. Reserva, automatiza y monetiza espacios de estacionamiento en tiempo real." />
-  <meta name="keywords" content="estacionamiento, parking, Lima, Perú, tecnología, B2B, movilidad urbana" />
-  <title>Parkeat — Movilidad Inteligente</title>
 
-  <!-- Fonts -->
+  <!-- ═══ SEO PRIMARIO ═══ -->
+  <title>Parkeat | Estacionamiento Inteligente en Lima y Chiclayo, Perú</title>
+  <meta name="description" content="Reserva tu estacionamiento en Lima y Chiclayo en segundos. Tecnología IoT, ingreso LPR sin contacto, tarifas dinámicas y dashboard B2B. La plataforma de movilidad inteligente del Perú." />
+  <meta name="keywords" content="estacionamiento Lima, parking Perú, reserva estacionamiento online, app parking Lima, estacionamiento inteligente, IoT parking, reconocimiento de placas LPR, estacionamiento Chiclayo, parking B2B empresas, movilidad urbana Perú, Parkeat" />
+  <meta name="author" content="Parkeat — SSOMA Safe" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <link rel="canonical" href="https://parkeat.pe/" />
+
+  <!-- ═══ GEO — SEO LOCAL PERÚ ═══ -->
+  <meta name="geo.region" content="PE-LIM" />
+  <meta name="geo.placename" content="Lima, Perú" />
+  <meta name="geo.position" content="-12.0664;-77.0536" />
+  <meta name="ICBM" content="-12.0664, -77.0536" />
+  <meta name="language" content="Spanish" />
+  <meta name="coverage" content="Peru" />
+  <meta name="distribution" content="global" />
+
+  <!-- ═══ OPEN GRAPH (Facebook, LinkedIn, WhatsApp) ═══ -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Parkeat" />
+  <meta property="og:locale" content="es_PE" />
+  <meta property="og:url" content="https://parkeat.pe/" />
+  <meta property="og:title" content="Parkeat | Estacionamiento Inteligente en Lima y Chiclayo" />
+  <meta property="og:description" content="Reserva tu estacionamiento en segundos. Tecnología IoT, ingreso LPR sin contacto y tarifas dinámicas. Para conductores y empresas en el Perú." />
+  <meta property="og:image" content="https://parkeat.pe/PARKEAT.jpg" />
+  <meta property="og:image:alt" content="Parkeat — Car Parking" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- ═══ TWITTER CARD ═══ -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Parkeat | Estacionamiento Inteligente en el Perú" />
+  <meta name="twitter:description" content="Reserva tu estacionamiento en Lima y Chiclayo en segundos. IoT, LPR y tarifas dinámicas." />
+  <meta name="twitter:image" content="https://parkeat.pe/PARKEAT.jpg" />
+  <meta name="twitter:image:alt" content="Parkeat — Car Parking" />
+
+  <!-- ═══ THEME COLOR ═══ -->
+  <meta name="theme-color" content="#1E40AF" />
+  <meta name="msapplication-TileColor" content="#1E40AF" />
+  <meta name="msapplication-TileImage" content="https://parkeat.pe/favicon.svg" />
+
+  <!-- ═══ FAVICON ═══ -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="shortcut icon" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+
+  <!-- ═══ JSON-LD STRUCTURED DATA ═══ -->
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Parkeat",
+      "alternateName": "Parkeat Car Parking",
+      "url": "https://parkeat.pe",
+      "logo": "https://parkeat.pe/PARKEAT.jpg",
+      "description": "Plataforma Inteligente de Estacionamientos Integrados para el mercado peruano. Reserva, automatiza y monetiza espacios con tecnología IoT y reconocimiento de placas LPR.",
+      "email": "info@ssomasafe.com",
+      "foundingLocation": "Lima, Perú",
+      "areaServed": ["Lima", "Chiclayo", "Perú"],
+      "sameAs": [],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "info@ssomasafe.com",
+        "contactType": "customer service",
+        "availableLanguage": "Spanish",
+        "areaServed": "PE"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. República de Chile 324",
+        "addressLocality": "Lima",
+        "addressCountry": "PE"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Parkeat Lima",
+      "image": "https://parkeat.pe/PARKEAT.jpg",
+      "url": "https://parkeat.pe",
+      "email": "info@ssomasafe.com",
+      "description": "Plataforma de estacionamiento inteligente en Lima con tecnología IoT y LPR.",
+      "priceRange": "S/. 4 - S/. 15 por hora",
+      "currenciesAccepted": "PEN",
+      "paymentAccepted": "Yape, Plin, Tarjeta de crédito, Tarjeta de débito",
+      "openingHours": "Mo-Su 00:00-24:00",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. República de Chile 324",
+        "addressLocality": "Lima",
+        "addressRegion": "Lima",
+        "addressCountry": "PE"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -12.0664,
+        "longitude": -77.0536
+      },
+      "hasMap": "https://maps.google.com/?q=-12.0664,-77.0536"
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Parkeat Chiclayo",
+      "image": "https://parkeat.pe/PARKEAT.jpg",
+      "url": "https://parkeat.pe",
+      "email": "info@ssomasafe.com",
+      "description": "Plataforma de estacionamiento inteligente en Chiclayo con tecnología IoT y LPR.",
+      "openingHours": "Mo-Su 00:00-24:00",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Lapoint 1221",
+        "addressLocality": "Chiclayo",
+        "addressRegion": "Lambayeque",
+        "addressCountry": "PE"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Parkeat",
+      "url": "https://parkeat.pe",
+      "description": "Plataforma Inteligente de Estacionamientos para el Perú",
+      "inLanguage": "es-PE",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Parkeat"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "MobileApplication",
+      "name": "Parkeat App",
+      "operatingSystem": "iOS, Android",
+      "applicationCategory": "TravelApplication",
+      "description": "App de estacionamiento inteligente para Lima y Chiclayo. Reserva, GPS en vivo, ingreso LPR y pago con Yape y Plin.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "PEN"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cómo reservo un estacionamiento con Parkeat?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Descarga la app Parkeat, activa tu GPS, selecciona el espacio disponible más cercano y reserva en 1 clic. Tu placa es tu ticket de entrada."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿En qué ciudades opera Parkeat?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Parkeat opera en Lima y Chiclayo, Perú. Estamos expandiéndonos a más ciudades próximamente."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué métodos de pago acepta Parkeat?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Aceptamos Yape, Plin, tarjetas de crédito y débito. El cobro es automático al salir del estacionamiento."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo puedo afiliar mi estacionamiento a Parkeat?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Completa el formulario de contacto en nuestra web o escríbenos a info@ssomasafe.com. La integración se completa en menos de 72 horas."
+          }
+        }
+      ]
+    }
+  ]
+  </script>
+
+  <!-- ═══ FONTS ═══ -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
-  <!-- Tailwind -->
+  <!-- ═══ TAILWIND ═══ -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -32,10 +213,6 @@
       }
     }
   </script>
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="shortcut icon" href="favicon.svg" />
 
   <link rel="stylesheet" href="styles.css" />
 </head>

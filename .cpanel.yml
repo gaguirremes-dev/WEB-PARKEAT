@@ -1,0 +1,13 @@
+---
+# cPanel Git Version Control — Parkeat
+# Despliega automáticamente en public_html al hacer push a master
+
+version: 1
+
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/$USER/public_html/
+    - /bin/cp -R . "$DEPLOYPATH"
+    - /bin/rm -f "$DEPLOYPATH/.cpanel.yml"
+    - /bin/rm -f "$DEPLOYPATH/robots.txt.bak"
+    - echo "Parkeat desplegado correctamente en $DEPLOYPATH"

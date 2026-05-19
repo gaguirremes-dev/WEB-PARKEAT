@@ -1,0 +1,39 @@
+# robots.txt — Parkeat
+# https://parkeat.pe
+
+# Permitir todos los crawlers
+User-agent: *
+Allow: /
+Disallow: /assets/video/
+Crawl-delay: 10
+
+# Google — sin delay, máxima indexación
+User-agent: Googlebot
+Allow: /
+Disallow:
+
+# Google Images
+User-agent: Googlebot-Image
+Allow: /assets/img/
+Allow: /PARKEAT.jpg
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 10
+
+# Bloquear crawlers de AI que usan contenido sin permiso
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+# Sitemap
+Sitemap: https://parkeat.pe/sitemap.xml
