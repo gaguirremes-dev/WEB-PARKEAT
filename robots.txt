@@ -1,5 +1,5 @@
 # robots.txt — Parkeat
-# https://parkeat.pe
+# https://parkeatcar.com
 
 # Permitir todos los crawlers
 User-agent: *
@@ -36,4 +36,4 @@ User-agent: Claude-Web
 Disallow: /
 
 # Sitemap
-Sitemap: https://parkeat.pe/sitemap.xml
+Sitemap: https://parkeatcar.com/sitemap.xml
