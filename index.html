@@ -221,42 +221,38 @@
 <body class="font-sans bg-white text-gray-800 antialiased">
 
   <!-- ═══════════════════════════════════════════ NAVBAR ═══ -->
-  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-      <nav class="flex items-center justify-between h-16 lg:h-20" aria-label="Navegación principal">
+  <header id="navbar">
+    <div class="nav-wrap">
+      <nav class="nav-inner" aria-label="Navegación principal">
 
         <!-- Logo -->
-        <a href="#inicio" class="flex items-center group" aria-label="Parkeat inicio">
-          <div class="bg-white rounded-xl px-3 py-1.5 shadow-sm transition-opacity duration-200 group-hover:opacity-90">
-            <img src="PARKEAT.jpg" alt="Parkeat — Car Parking" class="h-9 w-auto" />
-          </div>
+        <a href="#inicio" class="nav-logo" aria-label="Parkeat inicio">
+          <img src="PARKEAT.jpg" alt="Parkeat — Car Parking" />
         </a>
 
-        <!-- Menu desktop -->
-        <ul class="hidden md:flex items-center gap-4 lg:gap-8" role="list">
-          <li><a href="#b2c" class="nav-link text-sm font-medium">Soluciones B2C</a></li>
-          <li><a href="#b2b" class="nav-link text-sm font-medium">Soluciones B2B</a></li>
-          <li><a href="#smartcities" class="nav-link text-sm font-medium">Smart Cities</a></li>
-          <li><a href="#compliance" class="nav-link text-sm font-medium">Empresa</a></li>
-          <li><a href="#contacto" class="nav-link text-sm font-medium">Contacto</a></li>
-          <li><a href="https://rrhh.parkeatcar.com" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-white text-sm font-semibold px-4 py-2 rounded-full border border-white/40 bg-white/10 hover:bg-white/20 hover:border-white/60 transition-colors">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-            Intranet
-          </a></li>
+        <!-- Links desktop -->
+        <ul class="nav-links" role="list">
+          <li><a href="#b2c" class="nav-link">Soluciones B2C</a></li>
+          <li><a href="#b2b" class="nav-link">Soluciones B2B</a></li>
+          <li><a href="#smartcities" class="nav-link">Smart Cities</a></li>
+          <li><a href="#compliance" class="nav-link">Empresa</a></li>
+          <li><a href="#contacto" class="nav-link">Contacto</a></li>
+          <li>
+            <a href="https://rrhh.parkeatcar.com" target="_blank" rel="noopener" class="nav-btn-intranet">
+              <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+              Intranet
+            </a>
+          </li>
         </ul>
 
-        <!-- CTAs desktop -->
-        <div class="hidden lg:flex items-center gap-3">
-          <a href="#b2c" class="nav-cta-outline text-sm font-semibold px-4 py-2 rounded-full transition-all duration-200">
-            Descargar App
-          </a>
-          <a href="#b2b" class="nav-cta-filled text-sm font-semibold px-4 py-2 rounded-full transition-all duration-200">
-            Soy Empresa
-          </a>
+        <!-- Acciones desktop -->
+        <div class="nav-actions">
+          <a href="#b2c" class="nav-cta-outline">Descargar App</a>
+          <a href="#b2b" class="nav-cta-filled">Soy Empresa</a>
         </div>
 
-        <!-- Hamburger -->
-        <button id="menu-btn" class="md:hidden nav-hamburger p-2 rounded-lg" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+        <!-- Hamburger (solo mobile) -->
+        <button id="menu-btn" class="nav-hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
           <span class="ham-line"></span>
           <span class="ham-line"></span>
           <span class="ham-line"></span>
@@ -265,20 +261,20 @@
     </div>
 
     <!-- Mobile menu -->
-    <div id="mobile-menu" class="md:hidden hidden mobile-menu-panel" role="navigation" aria-label="Menú móvil">
-      <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-3">
-        <a href="#b2c"        class="mobile-nav-link">Soluciones B2C</a>
-        <a href="#b2b"        class="mobile-nav-link">Soluciones B2B</a>
+    <div id="mobile-menu" class="nav-mobile hidden" role="navigation" aria-label="Menú móvil">
+      <div class="nav-mobile-inner">
+        <a href="#b2c"         class="mobile-nav-link">Soluciones B2C</a>
+        <a href="#b2b"         class="mobile-nav-link">Soluciones B2B</a>
         <a href="#smartcities" class="mobile-nav-link">Smart Cities</a>
         <a href="#compliance"  class="mobile-nav-link">Empresa</a>
         <a href="#contacto"    class="mobile-nav-link">Contacto</a>
-        <a href="https://rrhh.parkeatcar.com" target="_blank" rel="noopener" class="mt-2 flex items-center justify-center gap-2 text-white font-semibold py-3 rounded-full border border-white/40 bg-white/10 hover:bg-white/20 text-sm transition-colors">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+        <a href="https://rrhh.parkeatcar.com" target="_blank" rel="noopener" class="nav-btn-intranet mobile-intranet">
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
           Intranet
         </a>
-        <div class="border-t border-white/10 pt-3 flex flex-col gap-2 mt-1">
-          <a href="#b2c" class="btn-outline-mobile text-center font-semibold py-2.5 px-4 rounded-full">Descargar App</a>
-          <a href="#b2b" class="btn-red text-center font-semibold py-2.5 px-4 rounded-full text-white">Soy Empresa</a>
+        <div class="mobile-ctas">
+          <a href="#b2c" class="btn-outline-mobile">Descargar App</a>
+          <a href="#b2b" class="btn-red">Soy Empresa</a>
         </div>
       </div>
     </div>
