@@ -1,0 +1,38 @@
+# ── Sistema Operativo ──────────────────────────────────────────────
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+._*
+*~
+
+# ── Editores e IDEs ────────────────────────────────────────────────
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.iml
+
+# ── Node / NPM ────────────────────────────────────────────────────
+node_modules/
+npm-debug.log*
+package-lock.json
+
+# ── Variables de entorno y credenciales ───────────────────────────
+.env
+.env.local
+*.key
+*.pem
+
+# ── Archivos temporales ───────────────────────────────────────────
+*.log
+*.tmp
+*.bak
+*.swp
+
+# ── Documentación interna ─────────────────────────────────────────
+contexto.md
+promt.md
+
+# ── Libro de Reclamaciones (credenciales y registros) ─────────────
+config.smtp.php
+reclamaciones/
