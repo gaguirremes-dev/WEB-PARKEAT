@@ -583,43 +583,78 @@
     <section id="conductores" class="drivers-section" aria-labelledby="drivers-title">
       <div class="section-wrap">
         <div class="drivers-grid">
-          <!-- Phone mockup -->
-          <div class="drivers-phone-wrap" data-reveal="left" aria-label="Mockup de la app Parkeat" aria-hidden="true">
-            <div class="drivers-phone">
-              <div class="dphone-screen">
-                <div class="dphone-topbar">
-                  <div class="dphone-logo">PARKEAT</div>
-                  <div class="dphone-notif" aria-hidden="true">3</div>
-                </div>
-                <div class="dphone-map" role="img" aria-label="Mapa con espacios disponibles">
-                  <div class="dphone-mapgrid" aria-hidden="true"></div>
-                  <div class="dphone-pin active dphone-pulse" style="top:42%;left:54%" aria-hidden="true"></div>
-                  <div class="dphone-pin" style="top:62%;left:28%" aria-hidden="true"></div>
-                  <div class="dphone-pin free" style="top:28%;left:72%" aria-hidden="true"></div>
-                  <div class="dphone-pin free" style="top:70%;left:65%" aria-hidden="true"></div>
-                </div>
-                <div class="dphone-card">
-                  <div class="dphone-card-top">
-                    <span>Espacio seleccionado</span>
-                    <span class="avail">Disponible</span>
+          <!-- Phone mockup — replica del hero -->
+          <div class="drivers-phone-wrap" data-reveal="left" aria-label="Vista previa de la app Parkeat" aria-hidden="true">
+            <div class="hero-phone-wrap">
+
+              <!-- Ambient glow -->
+              <div class="hp-aura"></div>
+
+              <!-- Phone frame -->
+              <div class="hp-frame">
+
+                <!-- Physical side buttons -->
+                <div class="hp-btn hp-btn-sil"></div>
+                <div class="hp-btn hp-btn-vup"></div>
+                <div class="hp-btn hp-btn-vdn"></div>
+                <div class="hp-btn hp-btn-pwr"></div>
+
+                <!-- Screen: video + all UI overlays -->
+                <div class="hp-screen">
+                  <video autoplay loop muted playsinline preload="auto">
+                    <source src="assets/video/app%20mobil.mp4" type="video/mp4">
+                  </video>
+
+                  <!-- Dynamic Island -->
+                  <div class="hp-island"></div>
+
+                  <!-- iOS-style status bar -->
+                  <div class="hp-statusbar">
+                    <span class="hp-time">9:41</span>
+                    <div class="hp-status-right">
+                      <!-- Signal bars -->
+                      <svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true">
+                        <rect x="0"    y="8"  width="3" height="4"  rx="0.8" fill="white"/>
+                        <rect x="4.5"  y="5"  width="3" height="7"  rx="0.8" fill="white"/>
+                        <rect x="9"    y="2"  width="3" height="10" rx="0.8" fill="white"/>
+                        <rect x="13.5" y="0"  width="3" height="12" rx="0.8" fill="white" opacity="0.35"/>
+                      </svg>
+                      <!-- WiFi -->
+                      <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true">
+                        <path d="M0.8 4C3.2 1.5 5.9 0.2 8 0.2S12.8 1.5 15.2 4"   stroke="white" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+                        <path d="M3.2 6.5C4.8 4.9 6.5 4  8 4S11.2 4.9 12.8 6.5"  stroke="white" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+                        <path d="M5.6 9C6.6 8 7.3 7.5 8 7.5S9.4 8 10.4 9"         stroke="white" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+                        <circle cx="8" cy="11.2" r="1.1" fill="white"/>
+                      </svg>
+                      <!-- Battery -->
+                      <svg width="26" height="13" viewBox="0 0 26 13" fill="none" aria-hidden="true">
+                        <rect x="0.6" y="1.5" width="22" height="10" rx="2.5" stroke="white" stroke-width="1.2"/>
+                        <path d="M23 4.5V8.5" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.45"/>
+                        <rect x="2.5" y="3.5" width="15" height="6" rx="1.2" fill="white"/>
+                      </svg>
+                    </div>
                   </div>
-                  <div class="dphone-card-name">Miraflores Plaza · A-14</div>
-                  <div class="dphone-card-row">
-                    <span class="price">Por hora</span>
-                    <span class="dist">0.3 km</span>
-                  </div>
-                  <div class="dphone-reserve">Reservar Ahora</div>
-                </div>
+
+                  <!-- Home indicator -->
+                  <div class="hp-home"></div>
+                </div><!-- /hp-screen -->
+
+              </div><!-- /hp-frame -->
+
+              <!-- Floating UI chips -->
+              <div class="hp-chip hp-chip-gps">
+                <span class="hp-chip-dot" style="background:#4ADE80;box-shadow:0 0 6px #4ADE80"></span>
+                GPS Activo
               </div>
-            </div>
-            <!-- Floating pills -->
-            <div class="driver-float float-yape" aria-hidden="true">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1E40AF" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.61 3.32A2 2 0 013.6 1h3a2 2 0 012 1.72A12.84 12.84 0 009.3 5.53a2 2 0 01-.45 2.11L7.91 8.84a16 16 0 006.36 6.36l.95-.94a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-              Yape &amp; Plin
-            </div>
-            <div class="driver-float float-lpr" aria-hidden="true">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-              LPR automático
+              <div class="hp-chip hp-chip-lpr">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2.2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                LPR Automático
+              </div>
+              <div class="hp-chip hp-chip-confirm">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4ADE80" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                Reserva Confirmada
+              </div>
+
             </div>
           </div>
 
