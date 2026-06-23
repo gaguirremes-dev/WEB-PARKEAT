@@ -11,3 +11,7 @@ define('SMTP_PASS', 'TU_CONTRASEÑA_AQUI');
 define('SMTP_FROM_NAME', 'Parkeat');
 
 define('EMPRESA_NOTIF_EMAIL', 'reclamaciones@parkeatcar.com');
+
+// hCaptcha (https://dashboard.hcaptcha.com)
+define('HCAPTCHA_SITE_KEY',   'TU_SITE_KEY_AQUI');
+define('HCAPTCHA_SECRET_KEY', 'TU_SECRET_KEY_AQUI');
