@@ -15,7 +15,6 @@ Disallow:
 # Google Images
 User-agent: Googlebot-Image
 Allow: /assets/img/
-Allow: /PARKEAT.jpg
 
 # Bing
 User-agent: Bingbot

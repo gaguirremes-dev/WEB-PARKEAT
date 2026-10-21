@@ -492,7 +492,9 @@ if (isset($_GET['ok']) && !empty($_SESSION['reclamo_success'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Libro de Reclamaciones - Parkeat</title>
     <meta name="description" content="Libro de Reclamaciones Virtual de Parkeat. Presenta tus quejas o reclamos conforme al Código de Protección al Consumidor en Perú.">
-    <link rel="icon" type="image/png" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -579,7 +581,7 @@ if (isset($_GET['ok']) && !empty($_SESSION['reclamo_success'])) {
     <header class="no-print w-full border-b border-navy-deep/10 bg-white shadow-sm sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-3">
-                <img src="PARKEAT.jpg" alt="Parkeat" class="h-10 object-contain rounded-lg">
+                <img src="assets/img/logo-parkeat.png" alt="Parkeat" class="h-10 w-auto object-contain" width="87" height="40">
             </a>
             <a href="index.html" class="text-navy-deep/50 hover:text-navy-deep text-xs flex items-center gap-1.5 transition-colors">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
