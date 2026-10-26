@@ -1363,3 +1363,19 @@ a { text-decoration: none; color: inherit; }
 .section-wrap { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
 @media (max-width: 639px) { .section-wrap { padding: 0 1.25rem; } }
 
+/* ============================================================
+   WHATSAPP FLOATING CTA
+   ============================================================ */
+.wa-float {
+  position: fixed; right: 24px; bottom: 24px; z-index: 90;
+  width: 56px; height: 56px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: #25D366; color: #fff;
+  box-shadow: 0 10px 24px rgba(37,211,102,0.35), 0 2px 8px rgba(10,22,40,0.22);
+  transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
+}
+.wa-float:hover { transform: translateY(-3px) scale(1.04); color: #fff; box-shadow: 0 14px 30px rgba(37,211,102,0.45); }
+.wa-float:focus-visible { outline: 3px solid rgba(37,211,102,0.55); outline-offset: 3px; }
+@media (max-width: 639px) { .wa-float { right: 16px; bottom: 16px; width: 52px; height: 52px; } }
+@media (prefers-reduced-motion: reduce) { .wa-float, .wa-float:hover { transition: none; transform: none; } }
+
