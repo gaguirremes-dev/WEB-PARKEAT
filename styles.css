@@ -90,15 +90,6 @@ a { text-decoration: none; color: inherit; }
 .nav-link:hover { color: #fff; }
 .nav-link:hover::after { transform: scaleX(1); }
 
-.nav-btn-intranet {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: var(--red); color: #fff;
-  font-size: 0.8rem; font-weight: 600;
-  padding: 7px 15px; border-radius: 9999px;
-  transition: background 0.2s; white-space: nowrap;
-}
-.nav-btn-intranet:hover { background: var(--red-dark); }
-
 .nav-cta-outline {
   display: inline-flex; align-items: center;
   color: rgba(255,255,255,0.75); font-size: 0.85rem; font-weight: 600;
@@ -127,7 +118,6 @@ a { text-decoration: none; color: inherit; }
 .nav-mobile-inner { max-width: 1280px; margin: 0 auto; padding: 14px 24px; display: flex; flex-direction: column; gap: 2px; }
 .mobile-nav-link { display: block; padding: 11px 0; color: rgba(255,255,255,0.65); font-weight: 500; font-size: 0.95rem; border-bottom: 1px solid rgba(255,255,255,0.06); transition: color 0.2s; }
 .mobile-nav-link:hover { color: #fff; }
-.mobile-intranet { margin-top: 8px; justify-content: center; width: 100%; }
 .mobile-ctas { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); }
 .btn-outline-mobile { display: block; text-align: center; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.8); font-size: 0.875rem; font-weight: 600; padding: 10px; border-radius: 9999px; transition: all 0.2s; }
 .btn-outline-mobile:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
