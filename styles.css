@@ -1341,7 +1341,7 @@ a { text-decoration: none; color: inherit; }
 @media (max-width: 639px)  { .footer-grid { grid-template-columns: 1fr; } .footer-brand { grid-column: span 1; } }
 
 .footer-logo-wrap { display: inline-block; margin-bottom: 18px; }
-.footer-logo-wrap img { height: 38px; width: auto; display: block; }
+.footer-logo-wrap img { height: 56px; width: auto; display: block; }
 .footer-tagline { font-size: 0.83rem; color: rgba(255,255,255,0.35); line-height: 1.65; max-width: 240px; }
 .footer-socials { display: flex; gap: 10px; margin-top: 22px; }
 .social-btn { width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.07); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.45); transition: all 0.2s; }
