@@ -15,7 +15,7 @@ define('DOMINIO_PERMITIDO', 'parkeatcar.com');
 define('EMPRESA_RAZON_SOCIAL', 'PARKEAT S.A.C.S.');
 define('EMPRESA_RUC', '20615720349');
 define('EMPRESA_DIRECCION', 'Av. República de Chile Nro. 324 Int. 601 Urb. Santa Beatriz (Edificio Polaris), Lima - Lima - Jesús María');
-define('EMPRESA_EMAIL', 'info@parkeatcar.com');
+define('EMPRESA_EMAIL', 'comercial@parkeatcar.com');
 
 $smtpConfigFile = __DIR__ . '/config.smtp.php';
 if (file_exists($smtpConfigFile)) {
